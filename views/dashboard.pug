@@ -1,0 +1,68 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Document
+    script(type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
+    link(rel="stylesheet" href="css/dashboard.css")
+  body 
+    header
+      div 
+        h2 
+        | Welcome 
+        span=fullName
+    form(id="add" autocomplete="off")
+      legend Have another to add?
+      div
+        input(type="radio" id="anime" name="type" value="anime" checked="checked")
+        label(for="anime") Anime
+        input(type="radio" id="manga" name="type" value="manga")
+        label(for="manga") Manga
+      label(for="title") What is the title?
+      input(type="text" id="title" name="title")
+      label(for="currentIndex") What chapter or episode are you on?
+      input(type="number" min="1" id="currentIndex" name="currentIndex" value="1")
+      label(for="currentSeason") What book or season are you on?
+      input(type="number" min="1" id="currentSeason" name="currentSeason" value="1")
+      div 
+        input(type="radio" id="media_dub" name="lang" value="dub")
+        label(for="dub") English Dub
+        input(type="radio" id="media_sub" name="lang" value="sub" checked="checked")
+        label(for="sub") English Sub
+      div#buttonContainer
+        button(type="submit") Submit
+    details(id="news" open="true")
+      summary News 
+      div
+        p Anime
+    section(id="manga")
+      div
+        h3
+        | Manga
+      div
+        ul
+          each val in mangaList
+            li= val.title
+    section(id="anime")
+      div
+        h3
+        | Anime 
+      div
+        ul
+          each val in animeList
+            li= val.title
+    section(id="recommendations")
+      div
+        h3
+        | Recommendations
+      div
+        ul
+    section(id="calender")
+      div
+        h3
+        | Calender
+      div
+        ul
+    script(src="js/add-form.js" defer="true")

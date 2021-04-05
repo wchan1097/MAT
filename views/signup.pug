@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Sign Up
+  body 
+    form(method="post" action="/signup" autocomplete="off" )
+      label(for="first") First Name
+      input(type="text" id="first" name="first" minlength="1" required=true)
+      label(for="first") Last Name
+      input(type="text" id="last" name="last" minlength="1" required=true)
+      label(for="username") Username
+      input(type="text" id="username" name="username" minlength="4")
+      label(for="password") Password 
+      input(type="password" id="password" name="password" minlength="8")
+      button(type="submit") Sign Up
+    -if(message)
+      p #{message}

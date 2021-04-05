@@ -1,0 +1,55 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+header h2 {
+  padding: 0;
+  margin: 0;
+}
+
+form {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 20px;
+}
+form input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  /* Firefox */
+}
+form input::-webkit-outer-spin-button, form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+form input[type=number] {
+  -moz-appearance: textfield;
+}
+form #buttonContainer {
+  display: grid;
+  place-items: center center;
+}
+form #buttonContainer button {
+  border: none;
+  background-color: #707070;
+  padding: 10px 30px;
+  color: white;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+form #buttonContainer button:hover {
+  background-color: #969696;
+}
+
+/*# sourceMappingURL=dashboard.css.map */
