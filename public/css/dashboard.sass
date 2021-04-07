@@ -1,25 +1,12 @@
+* 
+  font-family: 'Roboto', sans-serif
+  
 body, html
   margin: 0
   padding: 0
-  
-header
-  background-color: rgba(0, 0, 0, .4)
-  padding: 20px
-  display: flex
-  justify-content: flex-end
-
-  h2
-    padding: 0
-    margin: 0
 
 form
-  margin: 20px
-  display: flex
-  flex-direction: column
   gap: 10px
-  background-color: rgba(0, 0, 0, .1)
-  padding: 20px
-  border-radius: 20px
 
   input
     padding: 10px
@@ -31,25 +18,36 @@ form
       -webkit-appearance: none
       margin: 0
 
-
     /* Firefox */
     &[type=number] 
       -moz-appearance: textfield
-
-
 
   #buttonContainer
     display: grid
     place-items: center center
     button
       border: none
-      background-color: rgba(112,112,112,1)
-      padding: 10px 30px
-      color: white
-      border-radius: 10px
       transition: .2s
 
-      &:hover
-        background-color: rgba(150,150,150,1)
 
+#userFavorites
+  gap: 20px
 
+  .list > ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+    display: flex
+    gap: 10px
+    flex-direction: column
+
+    li
+      padding: 10px
+      border-radius: 5px
+
+    li:nth-child(odd)
+      background-color: rgba(0, 0, 0, .1)
+
+    li:nth-child(even)
+      background-color: rgba(0, 0, 0, .3)
+      color: white

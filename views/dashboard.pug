@@ -4,65 +4,51 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
+    title MAT
     script(type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js")
     link(rel="stylesheet" href="css/dashboard.css")
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet")
+    link(href="css/output.css" rel="stylesheet")
   body 
-    header
+    header.flex.justify-end.bg-blue-200.p-4
       div 
-        h2 
+        h2.p-0.m-0 
         | Welcome 
         span=fullName
-    form(id="add" autocomplete="off")
+    form#add.flex.p-4.flex-col.m-4.bg-blue-200.rounded-md(autocomplete="off")
       legend Have another to add?
       div
-        input(type="radio" id="anime" name="type" value="anime" checked="checked")
-        label(for="anime") Anime
-        input(type="radio" id="manga" name="type" value="manga")
+        input.mr-1(type="radio" id="anime" name="type" value="anime" checked="checked")
+        label.mr-4(for="anime") Anime
+        input.mr-1(type="radio" id="manga" name="type" value="manga")
         label(for="manga") Manga
       label(for="title") What is the title?
-      input(type="text" id="title" name="title")
+      input.outline-none(type="text" id="title" name="title")
       label(for="currentIndex") What chapter or episode are you on?
-      input(type="number" min="1" id="currentIndex" name="currentIndex" value="1")
+      input.outline-none(type="number" min="1" id="currentIndex" name="currentIndex" value="1")
       label(for="currentSeason") What book or season are you on?
-      input(type="number" min="1" id="currentSeason" name="currentSeason" value="1")
+      input.outline-none(type="number" min="1" id="currentSeason" name="currentSeason" value="1")
       div 
-        input(type="radio" id="media_dub" name="lang" value="dub")
-        label(for="dub") English Dub
-        input(type="radio" id="media_sub" name="lang" value="sub" checked="checked")
+        input.mr-1(type="radio" id="media_dub" name="lang" value="dub")
+        label.mr-4(for="dub") English Dub
+        input.mr-1(type="radio" id="media_sub" name="lang" value="sub" checked="checked")
         label(for="sub") English Sub
       div#buttonContainer
-        button(type="submit") Submit
-    details(id="news" open="true")
-      summary News 
-      div
-        p Anime
-    section(id="manga")
-      div
-        h3
-        | Manga
-      div
-        ul
-          each val in mangaList
-            li= val.title
-    section(id="anime")
-      div
-        h3
-        | Anime 
-      div
-        ul
-          each val in animeList
-            li= val.title
-    section(id="recommendations")
-      div
-        h3
-        | Recommendations
-      div
-        ul
-    section(id="calender")
-      div
-        h3
-        | Calender
-      div
-        ul
+        button.bg-blue-500.py-2.px-5.rounded-md.text-white(class="hover:bg-blue-600" type="submit") Submit
+    div#userFavorites.flex.p-4.pt-0
+      section#manga.list.bg-blue-200.rounded-md.p-4.w-full
+        div
+          h3.pb-2.m-0 Manga
+        div.list
+          ul.flex.m-0.p-0.flex-col
+            each val in mangaList
+              li.p-2.rounded-sm= val.title
+      section#anime.bg-blue-200.rounded-md.p-4.w-full
+        div
+          h3.pb-2.m-0 Anime 
+        div.list
+          ul.flex.m-0.p-0.flex-col
+            each val in animeList
+              li.p-2.rounded-sm(class="odd:bg-blue-50 even:bg-blue:300")= val.title
     script(src="js/add-form.js" defer="true")

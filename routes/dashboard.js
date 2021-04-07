@@ -36,6 +36,10 @@ module.exports = function (app) {
             }
           })
           if (checkExists == false) {
+            var newTitle = req.query.title.split(" ").map((item) => {
+              return item.charAt(0).toUpperCase() + item.substring(1).toLowerCase();
+            }).join(" ");
+            req.query.title = newTitle;
             newList.push(req.query);
             if (checkManga) {
               app.locals.users.updateOne(query, { $set: { mangaList: newList }

@@ -7,7 +7,7 @@ $("#add").submit((event) => {
     title: mediaElements["title"].value,
     [(mediaType == "anime") ? "episode" : "chapter"] : mediaElements["currentIndex"].value,
     [(mediaType == "anime") ? "season" : "book"] : mediaElements["currentSeason"].value,
-    language: mediaElements["media_lang"].value
+    language: mediaElements["lang"].value
   }
   $("#title").val("");
   $("#currentIndex").val(1);
