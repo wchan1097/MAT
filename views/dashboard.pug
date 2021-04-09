@@ -11,12 +11,12 @@ html(lang="en")
     link(href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet")
     link(href="css/output.css" rel="stylesheet")
   body 
-    header.flex.justify-end.bg-blue-200.p-4.px-8
+    header.flex.justify-end.bg-gray-200.p-4.px-8
       div 
         h2.p-0.m-0 
         | Welcome 
         span=fullName
-    form#add.flex.p-4.flex-col.m-8.bg-blue-200.rounded-md(autocomplete="off")
+    form#add.flex.p-4.flex-col.m-8.bg-gray-200.rounded-md(autocomplete="off")
       legend Have another to add?
       div
         input.mr-1(type="radio" id="anime" name="type" value="anime" checked="checked")
@@ -36,19 +36,62 @@ html(lang="en")
         label(for="sub") English Sub
       div#buttonContainer
         button.bg-blue-500.py-2.px-5.rounded-md.text-white(class="hover:bg-blue-600" type="submit") Submit
-    div#userFavorites.flex.p-8.pt-0
-      section#manga.list.bg-blue-200.rounded-md.p-4.w-full
+    div#userFavorites.p-8.pt-0
+      section#manga.list.bg-gray-200.rounded-md.p-4.w-full.mb-8
         div
           h3.pb-2.m-0 Manga
         div.list
           ul.flex.m-0.p-0.flex-col
-            each val in mangaList
-              li.p-2.rounded-sm= val.title
-      section#anime.bg-blue-200.rounded-md.p-4.w-full
+            each val, key in mangaList
+              li.p-2.rounded-sm.flex-col.flex.justify-between(class="odd:bg-blue-50 even:bg-blue:300" id=key)
+                div
+                  h4.font-bold.text-lg=val.title
+                  br
+                div
+                  div.flex.mb-2.justify-between
+                    p.mr-2.w-20 Chapter: 
+                    div.flex.flex-row
+                      button(type="button").text-black.bg-green-300.w-8.rounded-full +
+                      div.grid.place-items-center.w-7.mx-2
+                        p=val.chapter
+                      button(type="button").text-black.bg-red-300.w-8.rounded-full -
+                  div.flex.justify-between
+                    p.mr-2.w-20 Volume: 
+                    div.flex.flex-row 
+                      button(type="button").text-black.bg-green-300.w-8.rounded-full +
+                      div.grid.place-items-center.w-7.mx-2
+                        p=val.book
+                      button(type="button").text-black.bg-red-300.w-8.rounded-full -
+                  br
+                  button(type="button" onclick="deleteManga(this)").bg-red-800.text-white.rounded-lg.p-2 Delete
+      section#anime.bg-gray-200.rounded-md.p-4.w-full
         div
           h3.pb-2.m-0 Anime 
         div.list
-          ul.flex.m-0.p-0.flex-col
+          ul.m-0.p-0
             each val in animeList
-              li.p-2.rounded-sm(class="odd:bg-blue-50 even:bg-blue:300")= val.title
-    script(src="js/add-form.js" defer="true")
+              li.p-2.rounded-sm(class="odd:bg-blue-50 even:bg-blue:300")
+                div
+                  p.font-bold.text-lg=val.title
+                  p
+                    | English 
+                    span=val.language
+                  br
+                div
+                  div.flex.mb-2.justify-between
+                    p.mr-2.w-20 Episode: 
+                    div.flex.flex-row
+                      button.text-black.bg-green-300.w-8.rounded-full +
+                      p.mx-2=val.episode
+                      button.text-black.bg-red-300.w-8.rounded-full -
+                  div.flex.justify-between
+                    p.mr-2.w-20 Season:
+                    div.flex.flex-row 
+                      button.text-black.bg-green-300.w-8.rounded-full +
+                      p.mx-2=val.season
+                      button.text-black.bg-red-300.w-8.rounded-full -
+                  br
+                  button(type="button").bg-red-800.text-white.rounded-lg.p-2 Delete
+              
+              
+    script(src="js/dashboard.js" defer="true")

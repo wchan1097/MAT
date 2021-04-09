@@ -16,3 +16,12 @@ $("#add").submit((event) => {
     console.log(data);
   })
 })
+
+function deleteManga(element){
+  var id = element.parentNode.parentNode.id;
+  var removeTitle = $(`#${id}`).find("h4").html();
+  $.get("/remove", removeTitle, data => {
+    console.log(data);
+  });
+  $(`#${id}`).remove();
+}
