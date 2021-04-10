@@ -41,20 +41,36 @@ module.exports = function (app) {
             }).join(" ");
             req.query.title = newTitle;
             newList.push(req.query);
-            if (checkManga) {
-              app.locals.users.updateOne(query, { $set: { mangaList: newList }
-              }, (error, res) => {
-                if (error) console.log(error); 
-              })
-            }
-            else{
-              app.locals.users.updateOne(query, { $set: { animeList: newList }
-              }, (error, res) => {
-                if (error) console.log(error);
-              })
-            }
+            app.locals.users.updateOne(query, { $set: { [(checkManga) ? "mangaList" : "animeList"]: newList }
+            }, (error, res) => {
+              if (error) console.log(error); 
+            })
           }
         })
+    }
+  })
+
+  app.get("/remove", function (req, res, next) {
+    if (req.session.username){
+      var query = {
+        username: req.session.username.toLowerCase()
+      };
+      app.locals.users
+      .findOne(query)
+      .then(user => {
+        var index = 0;
+        var newList = (req.query.type == "anime") ? user["animeList"] : user["mangaList"];
+        for (var i = 0; i < newList.length; i ++){
+          if (newList[i].title == req.query.title){
+            index = i;
+          }
+        }
+        newList.splice(index, 1);
+        app.locals.users.updateOne(query, { $set: { [(req.query.type == "anime") ? "animeList" : "mangaList"]: newList }
+        }, (error, res) => {
+          if (error) console.log(error); 
+        })
+      })
     }
   })
 }

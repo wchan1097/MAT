@@ -43,7 +43,7 @@ html(lang="en")
         div.list
           ul.flex.m-0.p-0.flex-col
             each val, key in mangaList
-              li.p-2.rounded-sm.flex-col.flex.justify-between(class="odd:bg-blue-50 even:bg-blue:300" id=key)
+              li.p-2.rounded-sm.flex-col.flex.justify-between(class="odd:bg-blue-50 even:bg-blue:300" id=`m${key}`)
                 div
                   h4.font-bold.text-lg=val.title
                   br
@@ -63,15 +63,15 @@ html(lang="en")
                         p=val.book
                       button(type="button").text-black.bg-red-300.w-8.rounded-full -
                   br
-                  button(type="button" onclick="deleteManga(this)").bg-red-800.text-white.rounded-lg.p-2 Delete
+                  button(type="button" onclick="deleteItem(this)").bg-red-800.text-white.rounded-lg.p-2 Delete
       section#anime.bg-gray-200.rounded-md.p-4.w-full
         div
           h3.pb-2.m-0 Anime 
         div.list
           ul.m-0.p-0
-            each val in animeList
-              li.p-2.rounded-sm(class="odd:bg-blue-50 even:bg-blue:300")
-                div
+            each val, key in animeList
+              li.p-2.rounded-sm.flex-col.flex.justify-between(class="odd:bg-blue-50 even:bg-blue:300" id=`a${key}`)
+                div.bg-gray-
                   p.font-bold.text-lg=val.title
                   p
                     | English 
@@ -82,16 +82,18 @@ html(lang="en")
                     p.mr-2.w-20 Episode: 
                     div.flex.flex-row
                       button.text-black.bg-green-300.w-8.rounded-full +
-                      p.mx-2=val.episode
+                      div.grid.place-items-center.w-7.mx-2
+                        p=val.episode
                       button.text-black.bg-red-300.w-8.rounded-full -
                   div.flex.justify-between
                     p.mr-2.w-20 Season:
                     div.flex.flex-row 
                       button.text-black.bg-green-300.w-8.rounded-full +
-                      p.mx-2=val.season
+                      div.grid.place-items-center.w-7.mx-2
+                        p=val.season
                       button.text-black.bg-red-300.w-8.rounded-full -
                   br
-                  button(type="button").bg-red-800.text-white.rounded-lg.p-2 Delete
+                  button(type="button" onclick="deleteItem(this)").bg-red-800.text-white.rounded-lg.p-2 Delete
               
               
     script(src="js/dashboard.js" defer="true")

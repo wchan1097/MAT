@@ -17,10 +17,11 @@ $("#add").submit((event) => {
   })
 })
 
-function deleteManga(element){
+function deleteItem(element){
   var id = element.parentNode.parentNode.id;
+  var type = element.parentNode.parentNode.parentNode.parentNode.parentNode.id;
   var removeTitle = $(`#${id}`).find("h4").html();
-  $.get("/remove", removeTitle, data => {
+  $.get("/remove", {title : removeTitle, type : type} , data => {
     console.log(data);
   });
   $(`#${id}`).remove();
